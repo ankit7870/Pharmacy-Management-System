@@ -79,11 +79,11 @@
               <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jTextField1" max="32767" attributes="0"/>
-                  <Component id="jLabel4" pref="34" max="32767" attributes="0"/>
+                  <Component id="jLabel4" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel6" pref="34" max="32767" attributes="0"/>
+                  <Component id="jLabel6" max="32767" attributes="0"/>
                   <Component id="jTextField2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
