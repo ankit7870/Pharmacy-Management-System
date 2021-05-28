@@ -5,10 +5,6 @@
  */
 package com.mycompany.pharmacyjava;
 
-/**
- *
- * @author ANKIT
- */
 public class PharmacyJava {
     public static void main(String[] args){
         
