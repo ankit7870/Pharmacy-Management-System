@@ -5,10 +5,7 @@
  */
 package com.mycompany.pharmacyjava;
 
-/**
- *
- * @author ANKIT
- */
+
 public class Login extends javax.swing.JFrame {
 
     /**
