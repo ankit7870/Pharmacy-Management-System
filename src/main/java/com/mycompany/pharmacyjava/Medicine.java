@@ -29,6 +29,7 @@ public class Medicine extends javax.swing.JFrame {
     public Medicine() {
         initComponents();
         SelectMed();
+        GetCompany();
     }
     
     
@@ -133,8 +134,6 @@ public class Medicine extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(102, 204, 0));
         jLabel10.setText("ID");
 
-        MedComp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         AddBtn.setBackground(new java.awt.Color(102, 102, 102));
         AddBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         AddBtn.setForeground(new java.awt.Color(0, 204, 0));
@@ -193,10 +192,15 @@ public class Medicine extends javax.swing.JFrame {
         ClearBtn.setBackground(new java.awt.Color(102, 102, 102));
         ClearBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ClearBtn.setForeground(new java.awt.Color(0, 204, 0));
-        ClearBtn.setText("CLEaR");
+        ClearBtn.setText("CLEAR");
         ClearBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ClearBtnMouseClicked(evt);
+            }
+        });
+        ClearBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearBtnActionPerformed(evt);
             }
         });
 
@@ -423,6 +427,24 @@ public class Medicine extends javax.swing.JFrame {
         }
     }
     
+    public void GetCompany()
+    {
+        try{
+            Con= DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","@MySQL$2021");
+        St=Con.createStatement();
+        String query="Select *from mysql.companytbl";
+        Rs= St.executeQuery(query);
+        while(Rs.next()){
+            String Mycomp=Rs.getString("CompName");
+            MedComp.addItem(Mycomp);
+        }
+        }catch(SQLException e)
+        {
+             e.printStackTrace();
+        }
+    }
+    
+    
     private void AddBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBtnMouseClicked
         // TODO add your handling code here:
         MDate=MedMfg.getDate();
@@ -532,6 +554,10 @@ public class Medicine extends javax.swing.JFrame {
         new Agents().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void ClearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ClearBtnActionPerformed
  
     /**
      * @param args the command line arguments
