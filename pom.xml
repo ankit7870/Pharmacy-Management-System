@@ -27,6 +27,16 @@
             <artifactId>commons-dbutils</artifactId>
             <version>1.7</version>
         </dependency>
+        <dependency>
+            <groupId>org.netbeans.externalt</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>swing-layout</groupId>
+            <artifactId>swing-layout</artifactId>
+            <version>1.0.2</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

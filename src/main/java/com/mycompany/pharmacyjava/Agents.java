@@ -17,6 +17,8 @@ import javax.swing.JFrame;
 import net.proteanit.sql.DbUtils;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
+import javax.swing.JComboBox;
 
 
 
@@ -281,10 +283,20 @@ public class Agents extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("COMPANY");
+        jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel19MouseClicked(evt);
+            }
+        });
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("MEDICINE");
+        jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel20MouseClicked(evt);
+            }
+        });
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
@@ -352,9 +364,9 @@ public class Agents extends javax.swing.JFrame {
     public void SelectMed()
     {
         try{
-        Con= DriverManager.getConnection("jdbc:derby://localhost:1527/student","user1","123");
+        Con= DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","@MySQL$2021");
         St=Con.createStatement();
-        Rs= St.executeQuery("Select *from User1.AGENTTBL");
+        Rs= St.executeQuery("Select *from mysql.agenttbl");
         AgentTbl.setModel(DbUtils.resultSetToTableModel(Rs));
         } catch(SQLException e)
         {
@@ -364,8 +376,8 @@ public class Agents extends javax.swing.JFrame {
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
        try{
             
-            Con = DriverManager.getConnection("jdbc:derby://localhost:1527/student","user1","123");
-            PreparedStatement add =Con.prepareStatement("insert into AGENTTBL values(?,?,?,?,?,?)");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","@MySQL$2021");
+            PreparedStatement add =Con.prepareStatement("insert into agenttbl values(?,?,?,?,?,?)");
             System.out.println("Connection created !");
             add.setInt(1,Integer.valueOf(Aid.getText()));
             add.setString(2,Aname.getText());
@@ -391,9 +403,9 @@ public class Agents extends javax.swing.JFrame {
        }
        else {
            try{
-               Con=DriverManager.getConnection("jdbc:derby://localhost:1527/student","user1","123");
+               Con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","@MySQL$2021");
                String Id=Aid.getText();
-               String Query ="Delete from User1.AGENTTBL where AID="+Id;
+               String Query ="Delete from mysql.agenttbl where AId="+Id;
                Statement Add=Con.createStatement();
                Add.executeUpdate(Query);
                SelectMed();
@@ -432,8 +444,8 @@ public class Agents extends javax.swing.JFrame {
         }else
         {
             try{
-                Con = DriverManager.getConnection("jdbc:derby://localhost:1527/student","user1","123");
-                String UpdateQuery="Update user1.AGENTTBL set Aname='"+Aname.getText()+"'"+",Aage="+Aage.getText()+""+",Aphone='"+Aphone.getText()+"'"+",Apass='"+Apass.getText()+"'"+",Agender='"+Agender.getSelectedItem().toString()+"'"+"where AID="+Aid.getText();
+                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","@MySQL$2021");
+                String UpdateQuery="Update mysql.agenttbl set Aname='"+Aname.getText()+"'"+",Aage="+Aage.getText()+""+",Aphone='"+Aphone.getText()+"'"+",Apass='"+Apass.getText()+"'"+",Agender='"+Agender.getSelectedItem().toString()+"'"+"where AId="+Aid.getText();
                 Statement Add=Con.createStatement();
                 Add.executeUpdate(UpdateQuery);
                 JOptionPane.showMessageDialog(this, "Agent Updated successfully");
@@ -444,6 +456,18 @@ public class Agents extends javax.swing.JFrame {
             SelectMed();
         }
     }//GEN-LAST:event_UpdateBtnMouseClicked
+
+    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
+        // TODO add your handling code here:
+        new Company().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel19MouseClicked
+
+    private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
+        // TODO add your handling code here:
+        new Medicine().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel20MouseClicked
 
     /**
      * @param args the command line arguments

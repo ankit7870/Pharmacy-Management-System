@@ -11,10 +11,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+import javax.swing.JTable;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -531,10 +535,20 @@ public class Company extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("MEDICINES");
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+        });
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("AGENT");
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel18MouseClicked(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
@@ -607,9 +621,9 @@ public class Company extends javax.swing.JFrame {
     public void SelectMed()
     {
         try{
-        Con= DriverManager.getConnection("jdbc:derby://localhost:1527/student","user1","123");
+        Con= DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","@MySQL$2021");
         St=Con.createStatement();
-        Rs= St.executeQuery("Select *from user1.COMPANYTABLE");
+        Rs= St.executeQuery("Select *from mysql.companytbl");
         ComTable.setModel(DbUtils.resultSetToTableModel(Rs));
         } catch(SQLException e)
         {
@@ -631,12 +645,12 @@ public class Company extends javax.swing.JFrame {
        
         try{
             
-            Con = DriverManager.getConnection("jdbc:derby://localhost:1527/student","user1","123");
-            PreparedStatement add =Con.prepareStatement("insert into COMPANYTABLE values(?,?,?,?,?)");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","@MySQL$2021");
+            PreparedStatement add =Con.prepareStatement("insert into companytbl values(?,?,?,?,?)");
             System.out.println("Connection created !");
             add.setInt(1,Integer.valueOf(ComId.getText()));
             add.setString(2,Comname.getText());
-            add.setString(3,Comname.getText());
+            add.setString(3,Comadd.getText());
             add.setInt(4,Integer.valueOf(Comexp.getText()));
             add.setString(5,Comphone.getText());
             
@@ -659,9 +673,9 @@ public class Company extends javax.swing.JFrame {
        }
        else {
            try{
-               Con=DriverManager.getConnection("jdbc:derby://localhost:1527/student","user1","123");
+               Con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","@MySQL$2021");
                String Id=ComId.getText();
-               String Query ="Delete from user1.COMPANYTABLE where COMID="+Id;
+               String Query ="Delete from mysql.companytbl where COMPID="+Id;
                Statement Add=Con.createStatement();
                Add.executeUpdate(Query);
                SelectMed();
@@ -703,8 +717,8 @@ public class Company extends javax.swing.JFrame {
         }else
         {
             try{
-                Con = DriverManager.getConnection("jdbc:derby://localhost:1527/student","user1","123");
-                String UpdateQuery="Update user1.COMPANYTABLE set COMNAME='"+Comname.getText()+"'"+",COMADD="+Comadd.getText()+""+",COMPHONE='"+Comphone.getText()+"'"+",COMEXP='"+Comexp.getText()+"'"+"where COMPID="+ComId.getText();
+                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","@MySQL$2021");
+                String UpdateQuery="Update mysql.companytbl set CompName='"+Comname.getText()+"'"+",CompAd='"+Comadd.getText()+"'"+",CompExp="+Comexp.getText()+""+",CompPhone='"+Comphone.getText()+"'"+"where CompId="+ComId.getText();
                 Statement Add=Con.createStatement();
                 Add.executeUpdate(UpdateQuery);
                 JOptionPane.showMessageDialog(this, "Company Updated successfully");
@@ -715,6 +729,18 @@ public class Company extends javax.swing.JFrame {
             SelectMed();
         }
     }//GEN-LAST:event_UpdatebtnMouseClicked
+
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+        // TODO add your handling code here:
+        new Medicine().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel17MouseClicked
+
+    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
+        // TODO add your handling code here:
+        new Agents().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel18MouseClicked
 
     /**
      * @param args the command line arguments
