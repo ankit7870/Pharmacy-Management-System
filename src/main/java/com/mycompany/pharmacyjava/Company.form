@@ -947,6 +947,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="SELLING"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel22MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel23">
           <Properties>
@@ -958,6 +961,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="X"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel23MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

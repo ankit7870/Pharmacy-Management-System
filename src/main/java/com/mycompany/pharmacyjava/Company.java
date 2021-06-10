@@ -553,10 +553,20 @@ public class Company extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("SELLING");
+        jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel22MouseClicked(evt);
+            }
+        });
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 51, 0));
         jLabel23.setText("X");
+        jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel23MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -741,6 +751,17 @@ public class Company extends javax.swing.JFrame {
         new Agents().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel18MouseClicked
+
+    private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jLabel23MouseClicked
+
+    private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
+        // TODO add your handling code here:
+        new Selling().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel22MouseClicked
 
     /**
      * @param args the command line arguments
