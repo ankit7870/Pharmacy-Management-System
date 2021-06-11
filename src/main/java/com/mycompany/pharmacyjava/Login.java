@@ -6,8 +6,11 @@
 package com.mycompany.pharmacyjava;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 
 public class Login extends javax.swing.JFrame {
@@ -121,6 +124,11 @@ public class Login extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(102, 102, 102));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -216,10 +224,10 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:\
-        String Query="select ' from User1.AGENTTBL where ANAME='"+Uid.getText()+"'and APASS='"+PasswordTxt.getText()+"'";
+        String Query="select * from User1.AGENTTBL where ANAME='"+Uid.getText()+"'and APASS='"+PasswordTxt.getText()+"'";
         try{
             Con=DriverManager.getConnection("jdbc:derby://localhost:1527/Pharmadb","User","12345");
-            St=Con.creatStatement();
+           St=Con.createStatement();
             Rs=St.executeQuery(Query);
             if(Rs.next()){
                 new Medicine().setVisible(true);
@@ -244,6 +252,10 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
